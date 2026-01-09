@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+ <meta charset="UTF-8">
+ <title>Hitung Gaji Karyawan</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<table class="container">
+ <tr>
+ <!-- INPUT -->
+ <td class="box">
+ <h2>Hitung Gaji Karyawan</h2>
+ <label>Gaji Pokok (Rp):</label><br>
+ <input type="number" id="gajiPokok" value="5000000"><br><br>
+ <label>Jumlah Jam Lembur:</label><br>
+ <input type="number" id="jamLembur" value="20"><br><br>
+ <button onclick="hitungGaji()">Hitung Gaji</button>
+ </td>
+ <!-- OUTPUT -->
+ <td class="box">
+ <h2>OUTPUT</h2>
+ <div id="hasil">
+ Gaji Pokok: Rp - <br><br>
+ Total Gaji Lembur: Rp - <br><br>
+ Gaji Kotor: Rp - <br><br>
+ Pajak: Rp - <br><br>
+ Gaji Bersih: Rp -
+ </div>
+ </td>
+ </tr>
+</table>
+<script>
+function hitungGaji() {
+ let gajiPokok = parseInt(document.getElementById("gajiPokok").value);
+ let jamLembur = parseInt(document.getElementById("jamLembur").value);
+ let gajiLembur = jamLembur * 20000;
+ let gajiKotor = gajiPokok + gajiLembur;
+ let pajak;
+ if (gajiKotor < 5000000) {
+ pajak = gajiKotor * 0.05;
+ } else if (gajiKotor <= 10000000) {
+ pajak = gajiKotor * 0.10;
+ } else {
+ pajak = gajiKotor * 0.15;
+ }
+ let gajiBersih = gajiKotor - pajak;
+ document.getElementById("hasil").innerHTML =
+ "Gaji Pokok: Rp " + gajiPokok.toLocaleString() + "<br><br>" +
+ "Total Gaji Lembur: Rp " + gajiLembur.toLocaleString() + "<br><br>" +
+ "Gaji Kotor: Rp " + gajiKotor.toLocaleString() + "<br><br>" +
+ "Pajak: Rp " + pajak.toLocaleString() + "<br><br>" +
+ "Gaji Bersih: Rp " + gajiBersih.toLocaleString();
+}
+</script>
+</body>
+</html>
